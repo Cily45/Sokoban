@@ -7,12 +7,13 @@
 int main() {
     srand(time(NULL));
 	char ** board = initBoard();
-
 	pos player = initpos(1, board);
 	pos goal= initpos(3, board);
 	pos box= initpos(2, board);
-
 	printBoard(board);
+    char playerMove;
+    playerMove = askMove(player);
+
 
   	for(int i = 0; i < 10; i++) {
     	free(board[i]);

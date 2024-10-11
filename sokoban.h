@@ -22,4 +22,6 @@ pos initpos(int type, char ** board);
 char askMove();
 void printBoard(char ** board);
 
+//move
+bool isMoveAvailable(char userMove, pos player, pos box);
 #endif //SOKOBAN_H
