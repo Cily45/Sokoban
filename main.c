@@ -15,8 +15,12 @@ int main() {
 
     char playerMove = askMove(player);
 
-    while (isMoveAvailable(playerMove, goal)) {
-        // deplacé joueur(maj board)
+    while (true) {
+        board = initBoard();
+
+        player =  movePlayer(player, playerMove);
+        box = moveBox(player, box, playerMove);
+        board = updateBoard(board, player, box, goal);
         //verifier si loose/win
         printBoard(board);
 

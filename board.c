@@ -54,8 +54,10 @@ pos initpos(int type, char **board) {
     return p;
 }
 
-char addMove(pos player, pos box, char **board) {
-
-
-
+char ** updateBoard(char **board, pos player, pos box, pos goal) {
+    board[goal.x][goal.y] = '.';
+    board[player.x][player.y] = 'o';
+    board[box.x][box.y] = 'X';
+    return board;
 }
+
