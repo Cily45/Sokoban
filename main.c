@@ -7,25 +7,33 @@
 int main() {
     srand(time(NULL));
     char **board = initBoard();
-    pos player = initpos(1, board);
-    pos goal = initpos(3, board);
-    pos box = initpos(2, board);
+    pos player = initpos(1);
+    pos goal = initpos(3);
+    while (player.x == goal.x && player.y == goal.y) {
+        goal = initpos(3);
+    }
+    pos box = initpos(2);
+    while ((player.x == goal.x && player.y == goal.y) || (box.x == goal.x && box.y == goal.y)) {
+        box = initpos(2);
+    }
 
-    printBoard(board);
-
-    char playerMove = askMove(player);
-
+    board = updateBoard(board, player, box, goal);
     while (true) {
-        board = initBoard();
-
-        player =  movePlayer(player, playerMove);
+        char playerMove = askMove(player, board, box, goal);
+        player = movePlayer(player, playerMove);
         box = moveBox(player, box, playerMove);
         board = updateBoard(board, player, box, goal);
-        //verifier si loose/win
-        printBoard(board);
 
-        playerMove = askMove(player);
-        // system("clear");
+        if (isWin(goal, box)) {
+            printGame(player, box, goal, board);
+            printf("\nGagné\n");
+            break;
+        }
+        if (isLose(goal, box)) {
+            printGame(player, box, goal, board);
+            printf("\nPerdu\n");
+            break;
+        }
     }
 
     // free

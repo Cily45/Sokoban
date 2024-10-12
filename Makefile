@@ -5,6 +5,7 @@ NAME = sokoban
 SRCS = main.c \
 	playerControle.c \
 	board.c \
+	gameChecker.c \
 	move.c
 
 all :  $(NAME)

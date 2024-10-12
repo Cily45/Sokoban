@@ -29,35 +29,25 @@ char **initBoard() {
 }
 
 // type:  1  = player | 2 = box | 3 = goal
-pos initpos(int type, char **board) {
+pos initpos(int type) {
     int x = 0;
     int y = 0;
 
     if (type == 2) {
-        x = rand() % 7 + 1;
-        y = rand() % 7 + 1;
+        x = rand() % 6 + 2;
+        y = rand() % 6 + 2;
     } else {
         x = rand() % 8 + 1;
         y = rand() % 8 + 1;
     }
-
     pos p = {x, y};
-
-    if (type == 1) {
-        board[x][y] = 'o';
-    } else if (type == 2) {
-        board[x][y] = 'X';
-    } else if (type == 3) {
-        board[x][y] = '.';
-    }
-
     return p;
 }
 
-char ** updateBoard(char **board, pos player, pos box, pos goal) {
+char **updateBoard(char **board, pos player, pos box, pos goal) {
+    board = initBoard();
     board[goal.x][goal.y] = '.';
     board[player.x][player.y] = 'o';
     board[box.x][box.y] = 'X';
     return board;
 }
-

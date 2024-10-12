@@ -3,25 +3,41 @@
 //
 #include "sokoban.h"
 
-bool isMoveAvailable(char userMove, pos player) {
+bool isMoveAvailable(char userMove, pos player, pos box) {
     int x = player.x;
     int y = player.y;
     if (userMove == 'z') {
-        x--;
-        return y > 0;
+      x--;
+      if(x == 1 && box.x == 1 && box.y == player.y) {
+          return false;
+        }
+      return x > 0;
     }
+
     if (userMove == 's') {
-        x++;
-        return y < 9;
+      x++;
+      if(x == 8 && box.x == 8 && box.y == player.y){
+          return false;
+        }
+      return x < 9;
     }
+
     if (userMove == 'q') {
         y--;
-        return x > 0;
+        if(y == 1 && box.y == 1 && box.x == player.x){
+          return false;
+        }
+        return y > 0;
     }
+
     if (userMove == 'd') {
         y++;
-        return x < 9;
+        if(y == 8 && box.y == 8 && box.x == player.x){
+          return false;
+        }
+        return y < 9;
     }
+
     return true;
 }
 
@@ -39,16 +55,20 @@ pos movePlayer(pos player, char playerMove) {
   return player;
 }
 pos moveBox(pos player, pos box, char playerMove) {
+  pos boxCopy = box;
   if(player.x == box.x && player.y == box.y) {
     if(playerMove == 's') {
-    box.x++;
+    boxCopy.x++;
   }else if(playerMove == 'd') {
-    box.y++;
+    boxCopy.y++;
   }else if(playerMove == 'q') {
-    box.y--;
+    boxCopy.y--;
   }else if(playerMove == 'z') {
-    box.x--;
+    boxCopy.x--;
+      }
   }
+  if(boxCopy.x < 9 && boxCopy.x > 0 && boxCopy.y < 9 && boxCopy.y > 0) {
+    return boxCopy;
   }
 
   return box;
