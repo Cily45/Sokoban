@@ -10,18 +10,22 @@
 #define SOKOBAN_H
 
 struct position {
-  int x;
-  int y;
-  };
-  typedef struct position pos;
+    int x;
+    int y;
+};
 
-char ** initBoard();
-pos initpos(int type, char ** board);
+typedef struct position pos;
 
-//userControle.c
+//board.c
+char **initBoard();
+
+pos initpos(int type, char **board);
+
+//playerControle.c
 char askMove();
-void printBoard(char ** board);
+
+void printBoard(char **board);
 
 //move
-bool isMoveAvailable(char userMove, pos player, pos box);
+bool isMoveAvailable(char playerMove, pos player);
 #endif //SOKOBAN_H

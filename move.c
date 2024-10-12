@@ -3,16 +3,24 @@
 //
 #include "sokoban.h"
 
-bool isMoveAvailable(char userMove, pos player, pos box){
-  switch(userMove){
-    case 'z':
-      return player.y > 1 && player.y - 1 != box.y;
-    case 's':
-      return player.y < 8 && player.y + 1 != box.y;
-    case 'x':
-      return player.x > 1 && player.x - 1 != box.x;
-    case 'd':
-      return player.x < 8 && player.x + 1 != box.x;
-  }
+bool isMoveAvailable(char userMove, pos player) {
+    int x = player.x;
+    int y = player.y;
+    if (userMove == 'z') {
+        y--;
+        return y > 0;
+    }
+    if (userMove == 's') {
+        y++;
+        return y < 9;
+    }
+    if (userMove == 'q') {
+        x--;
+        return x > 0;
+    }
+    if (userMove == 'd') {
+        x++;
+        return x < 9;
+    }
     return true;
-  }
+}
