@@ -3,7 +3,7 @@
 //
 #include "sokoban.h"
 
-char askMove(pos player, char ** board, pos box, pos goal) {
+char askMove(pos player, char **board, pos box, pos goal) {
     char move;
 
     while (true) {
@@ -11,9 +11,9 @@ char askMove(pos player, char ** board, pos box, pos goal) {
         printf("Choisissez un mouvement haut(z) bas(s) droite(d) gauche(q): ");
         scanf(" %c", &move);
         if (move == 'z' || move == 's' || move == 'd' || move == 'q') {
-           if(isMoveAvailable(move, player, box)) {
-             return move;
-           }
+            if (isMoveAvailable(move, player, box)) {
+                return move;
+            }
         }
     }
 }
@@ -30,13 +30,13 @@ void printBoard(char **board) {
 }
 
 void printPos(pos player, pos box, pos goal) {
-  printf("Joueur: %d %d\n", player.x, player.y);
-  printf("Boite: %d %d\n", box.x, box.y);
-  printf("Emplacement: %d %d\n", goal.x, goal.y);
+    printf("Joueur: %d %d\n", player.x, player.y);
+    printf("Boite: %d %d\n", box.x, box.y);
+    printf("Emplacement: %d %d\n", goal.x, goal.y);
 }
 
-void printGame(pos player, pos box, pos goal,char ** board) {
-  system("clear");
-  printPos(player, box, goal);
-  printBoard(board);
+void printGame(pos player, pos box, pos goal, char **board) {
+    system("clear");
+    printPos(player, box, goal);
+    printBoard(board);
 }
